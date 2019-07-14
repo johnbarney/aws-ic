@@ -24,4 +24,5 @@ Takes two ordered arguments:
 `./aws-ssh <ssh_user> <instance_id>`
 
 ssh_user - User to establish SSH connection with.
+
 instance_id - Instance ID to connect to.
