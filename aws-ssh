@@ -29,8 +29,6 @@ def random_string(string_length=10):
 
 
 # Generate temporary key pairs
-filename = "/tmp/" + random_string()
-
 key = rsa.generate_private_key(
     backend=crypto_default_backend(),
     public_exponent=65537,
@@ -48,6 +46,7 @@ public_key = key.public_key().public_bytes(
 )
 
 # Write private key to file and set POSIX permissions properly
+filename = "/tmp/" + random_string()
 pri = open(filename, "w")
 pri.write(private_key.decode('utf8'))
 pri.close()
