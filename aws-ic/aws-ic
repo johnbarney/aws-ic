@@ -17,7 +17,7 @@ ec2_client = boto3.client('ec2')
 ec2_connect_client = boto3.client('ec2-instance-connect')
 
 # Argument Parser
-parser = argparse.ArgumentParser("aws-ssh")
+parser = argparse.ArgumentParser("aws-ic")
 parser.add_argument("ssh_user", help="User to establish SSH connection with.", type=str)
 parser.add_argument("instance_id", help="Instance ID to connect to.", type=str)
 args = parser.parse_args()
@@ -74,8 +74,7 @@ ec2_connect = ec2_connect_client.send_ssh_public_key(
 
 if ec2_connect['Success'] is False:
     print("EC2 Connect Failure")
-
-# Open shell in subprocess
-shell = subprocess.call("ssh -i " + filename + " " + args.ssh_user + "@" + ip, shell=True)
+else:
+    shell = subprocess.call("ssh -i " + filename + " " + args.ssh_user + "@" + ip, shell=True)
 
 os.remove(filename)

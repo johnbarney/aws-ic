@@ -6,7 +6,7 @@ HERE = pathlib.Path(__file__).parent
 README = (HERE / "README.md").read_text()
 setup(
     name="aws-ic",
-    version="1.0.1",
+    version="1.0.2",
     scripts=['aws-ic/aws-ic'],
     description="A wrapper for EC2 Instance Connect to make a ssh connection to keyless EC2 instances more streamlined and secure.",
     long_description=README,
