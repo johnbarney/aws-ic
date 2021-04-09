@@ -59,7 +59,7 @@ response = ec2_client.describe_instances(InstanceIds=[args.instance_id])
 instance = response['Reservations'][0]['Instances'][0]
 az = instance['Placement']['AvailabilityZone']
 # If no public IP, use private IP
-if not instance['PublicIpAddress']:
+if not instance.get('PublicIpAddress'):
     ip = instance['PrivateIpAddress']
 else:
     ip = instance['PublicIpAddress']
