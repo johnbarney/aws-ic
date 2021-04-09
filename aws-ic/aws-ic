@@ -59,10 +59,7 @@ response = ec2_client.describe_instances(InstanceIds=[args.instance_id])
 instance = response['Reservations'][0]['Instances'][0]
 az = instance['Placement']['AvailabilityZone']
 # If no public IP, use private IP
-if not instance.get('PublicIpAddress'):
-    ip = instance['PrivateIpAddress']
-else:
-    ip = instance['PublicIpAddress']
+ip = instance.get('PublicIpAddress') or instance['PrivateIpAddress']
 
 # Send public key to instance
 ec2_connect = ec2_connect_client.send_ssh_public_key(
